@@ -32,6 +32,7 @@ export interface IUser {
 	nationalIdExpiresAt?: Date;
 	isOnline: boolean;
 	lastSeenAt: Date;
+	refreshTokens: string[];
 	createdAt: Date;
 	updatedAt: Date;
 }
