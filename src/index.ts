@@ -30,6 +30,8 @@ export interface IUser {
 	nationalIdSelfieImageUrl?: string;
 	nationalIdVerified?: boolean;
 	nationalIdExpiresAt?: Date;
+	isOnline: boolean;
+	lastSeenAt: Date;
 	createdAt: Date;
 	updatedAt: Date;
 }
