@@ -18,10 +18,12 @@ export enum OrderStatus {
 export interface IUser {
 	id: string;
 	email: string;
+	password: string;
 	role: UserRole;
 	firstName: string;
 	lastName: string;
 	phoneNumber: string;
+	imageUrl?: string;
 	nationalId?: string;
 	nationalIdFaceImageUrl?: string;
 	nationalIdBackImageUrl?: string;
@@ -30,5 +32,4 @@ export interface IUser {
 	nationalIdExpiresAt?: Date;
 	createdAt: Date;
 	updatedAt: Date;
-	imageUrl?: string;
 }
