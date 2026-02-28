@@ -1,4 +1,4 @@
-// src/index.ts
+import { Types } from "mongoose";
 
 export enum UserRole {
 	CLIENT = "CLIENT",
@@ -40,7 +40,7 @@ export enum MessageType {
 }
 
 export interface IUser {
-	_id: string;
+	_id: Types.ObjectId;
 	email: string;
 	password: string;
 	role: UserRole;
@@ -56,7 +56,7 @@ export interface IUser {
 }
 
 export interface IdentityVerification {
-	_id: string;
+	_id: Types.ObjectId;
 	nationalId: string;
 	faceImageUrl: string;
 	backImageUrl: string;
@@ -64,14 +64,14 @@ export interface IdentityVerification {
 	status: IdentityVerificationStatus;
 	expiresAt: Date;
 	adminNotes?: string;
-	userId: string;
+	userId: Types.ObjectId;
 	createdAt: Date;
 	updatedAt: Date;
 }
 
 export interface IMenu {
-	_id: string;
-	providerId: string;
+	_id: Types.ObjectId;
+	providerId: Types.ObjectId;
 	name: string;
 	description: string;
 	price: number;
@@ -83,15 +83,15 @@ export interface IMenu {
 }
 
 export interface IOrderItem {
-	menuId: string;
+	menuId: Types.ObjectId;
 	quantity: number;
 	priceAtTimeOfOrder: number;
 }
 
 export interface IOrder {
-	_id: string;
-	clientId: string;
-	providerId: string;
+	_id: Types.ObjectId;
+	clientId: Types.ObjectId;
+	providerId: Types.ObjectId;
 	serviceType: ServiceType;
 	status: OrderStatus;
 	totalAmount: number;
@@ -103,8 +103,8 @@ export interface IOrder {
 }
 
 export interface ICalendar {
-	_id: string;
-	providerId: string;
+	_id: Types.ObjectId;
+	providerId: Types.ObjectId;
 	blackoutDates: Date[];
 	workingHours: object;
 	createdAt: Date;
@@ -112,10 +112,10 @@ export interface ICalendar {
 }
 
 export interface IReview {
-	_id: string;
-	transactionId: string;
-	reviewerId: string;
-	revieweeId: string;
+	_id: Types.ObjectId;
+	transactionId: Types.ObjectId;
+	reviewerId: Types.ObjectId;
+	revieweeId: Types.ObjectId;
 	score: number;
 	comment?: string;
 	createdAt: Date;
@@ -123,22 +123,22 @@ export interface IReview {
 }
 
 export interface INotification {
-	_id: string;
-	recipientId: string;
+	_id: Types.ObjectId;
+	recipientId: Types.ObjectId;
 	title: string;
 	body: string;
 	type: NotificationType;
 	isRead: boolean;
-	referenceId: string;
+	referenceId: Types.ObjectId;
 	createdAt: Date;
 	updatedAt: Date;
 }
 
 export interface IMessage {
-	_id: string;
-	transactionId: string;
-	senderId: string;
-	receiverId: string;
+	_id: Types.ObjectId;
+	transactionId: Types.ObjectId;
+	senderId: Types.ObjectId;
+	receiverId: Types.ObjectId;
 	type: MessageType;
 	content: string;
 	createdAt: Date;
