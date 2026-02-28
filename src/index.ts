@@ -113,7 +113,7 @@ export interface ICalendar {
 
 export interface IReview {
 	_id: Types.ObjectId;
-	transactionId: Types.ObjectId;
+	orderId: Types.ObjectId;
 	reviewerId: Types.ObjectId;
 	revieweeId: Types.ObjectId;
 	score: number;
@@ -136,7 +136,7 @@ export interface INotification {
 
 export interface IMessage {
 	_id: Types.ObjectId;
-	transactionId: Types.ObjectId;
+	orderId: Types.ObjectId;
 	senderId: Types.ObjectId;
 	receiverId: Types.ObjectId;
 	type: MessageType;
