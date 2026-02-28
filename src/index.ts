@@ -136,7 +136,7 @@ export interface INotification {
 
 export interface IMessage {
 	_id: Types.ObjectId;
-	orderId: Types.ObjectId;
+	orderId?: Types.ObjectId;
 	senderId: Types.ObjectId;
 	receiverId: Types.ObjectId;
 	type: MessageType;
