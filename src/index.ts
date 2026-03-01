@@ -10,6 +10,7 @@ export enum IdentityVerificationStatus {
 	PENDING = "PENDING",
 	VERIFIED = "VERIFIED",
 	REJECTED = "REJECTED",
+	EXPIRED = "EXPIRED",
 }
 
 export enum ServiceType {
