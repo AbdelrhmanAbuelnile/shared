@@ -118,11 +118,17 @@ export interface IReview {
 	reviewerId: Types.ObjectId;
 	revieweeId: Types.ObjectId;
 	score: number;
+	itemScore: ItemRating;
 	comment?: string;
 	createdAt: Date;
 	updatedAt: Date;
 }
 
+export interface ItemRating {
+	menuId: Types.ObjectId;
+	score: number;
+	comment: string;
+}
 export interface INotification {
 	_id: Types.ObjectId;
 	recipientId: Types.ObjectId;
