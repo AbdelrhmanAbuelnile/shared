@@ -89,6 +89,18 @@ export interface IOrderItem {
 	priceAtTimeOfOrder: number;
 }
 
+export interface IInHomeService {
+	_id: Types.ObjectId;
+	providerId: Types.ObjectId;
+	title: string;
+	description: string;
+	pricePerDay: number;
+	images: string[];
+	isAvailable: boolean;
+	createdAt: Date;
+	updatedAt: Date;
+}
+
 export interface IOrder {
 	_id: Types.ObjectId;
 	clientId: Types.ObjectId;
@@ -98,7 +110,11 @@ export interface IOrder {
 	totalAmount: number;
 	scheduledFor: Date;
 	deliveryAddress: string;
-	items: IOrderItem[];
+	items?: IOrderItem[];
+	inHomeDetails?: {
+		days: number;
+		pricePerDayAtBooking: number;
+	};
 	createdAt: Date;
 	updatedAt: Date;
 }
