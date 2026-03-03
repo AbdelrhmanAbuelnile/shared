@@ -52,6 +52,7 @@ export interface IUser {
 	isOnline: boolean;
 	lastSeenAt: Date;
 	refreshTokens: string[];
+	pushTokens: String[];
 	createdAt: Date;
 	updatedAt: Date;
 }
