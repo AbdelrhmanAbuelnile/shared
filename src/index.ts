@@ -198,7 +198,8 @@ export interface ISupportTicket {
 	orderId?: Types.ObjectId;
 	subject: string;
 	message: string;
-	status: "OPEN" | "RESOLVED";
+	assets: string[];
+	status: "OPEN" | "IN_PROGRESS" | "RESOLVED";
 	createdAt: Date;
 	updatedAt: Date;
 }
