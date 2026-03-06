@@ -1,9 +1,18 @@
 import { Types } from "mongoose";
 
+// ==========================================
+// 1. ENUMS & CONSTANTS
+// ==========================================
+
 export enum UserRole {
 	CLIENT = "CLIENT",
 	CHEF = "CHEF",
 	ADMIN = "ADMIN",
+}
+
+export enum ChefType {
+	CLOUD_KITCHEN = "CLOUD_KITCHEN",
+	IN_HOME_CHEF = "IN_HOME_CHEF",
 }
 
 export enum IdentityVerificationStatus {
@@ -24,6 +33,8 @@ export enum OrderStatus {
 	REJECTED = "REJECTED",
 	COOKING = "COOKING",
 	DELIVERING = "DELIVERING",
+	BUYING_GROCERIES = "BUYING_GROCERIES",
+	ON_THE_WAY = "ON_THE_WAY",
 	COMPLETED = "COMPLETED",
 }
 
@@ -40,19 +51,27 @@ export enum MessageType {
 	VIDEO = "VIDEO",
 }
 
+// ==========================================
+// 2. INTERFACES
+// ==========================================
+
 export interface IUser {
 	_id: Types.ObjectId;
 	email: string;
 	password: string;
 	role: UserRole;
+	chefType?: ChefType;
 	firstName: string;
 	lastName: string;
 	phoneNumber: string;
 	imageUrl?: string;
+	cuisines?: Types.ObjectId[];
+	bio?: string;
+	isDeleted: boolean;
 	isOnline: boolean;
 	lastSeenAt: Date;
 	refreshTokens: string[];
-	pushTokens: String[];
+	pushTokens: string[];
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -116,6 +135,10 @@ export interface IOrder {
 		days: number;
 		pricePerDayAtBooking: number;
 	};
+	statusHistory: {
+		status: OrderStatus;
+		timestamp: Date;
+	}[];
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -165,6 +188,41 @@ export interface IMessage {
 	receiverId: Types.ObjectId;
 	type: MessageType;
 	content: string;
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export interface ISupportTicket {
+	_id: Types.ObjectId;
+	userId: Types.ObjectId;
+	orderId?: Types.ObjectId;
+	subject: string;
+	message: string;
+	status: "OPEN" | "RESOLVED";
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export interface ISystemIssue {
+	_id: Types.ObjectId;
+	title: string;
+	description: string;
+	assets: string[];
+	isResolved: boolean;
+	userId?: Types.ObjectId;
+	applicationArea?: "PAYMENTS" | "ORDERS" | "USER_MANAGEMENT" | "NOTIFICATIONS";
+	applicationType?: "chef-app" | "client-app" | "admin-dashboard";
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export interface ICuisine {
+	_id: Types.ObjectId;
+	name: string;
+	nameEn: string;
+	imageUrl: string;
+	isActive: boolean;
+	createdBy?: Types.ObjectId;
 	createdAt: Date;
 	updatedAt: Date;
 }
