@@ -181,11 +181,23 @@ export interface INotification {
 	updatedAt: Date;
 }
 
+export interface IConversation {
+	_id: Types.ObjectId;
+	participantIds: Types.ObjectId[];
+	lastMessageAt: Date;
+	lastMessageText: string;
+	unreadCounts: {
+		[participantId: string]: number;
+	};
+	createdAt: Date;
+	updatedAt: Date;
+}
+
 export interface IMessage {
 	_id: Types.ObjectId;
+	conversationId: Types.ObjectId;
 	orderId?: Types.ObjectId;
 	senderId: Types.ObjectId;
-	receiverId: Types.ObjectId;
 	type: MessageType;
 	content: string;
 	createdAt: Date;
