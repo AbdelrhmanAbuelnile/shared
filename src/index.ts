@@ -36,6 +36,7 @@ export enum OrderStatus {
 	BUYING_GROCERIES = "BUYING_GROCERIES",
 	ON_THE_WAY = "ON_THE_WAY",
 	COMPLETED = "COMPLETED",
+	TERMINATED = "TERMINATED",
 }
 
 export enum NotificationType {
