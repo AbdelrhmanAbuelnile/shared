@@ -51,6 +51,14 @@ export enum MessageType {
 	VIDEO = "VIDEO",
 }
 
+export interface ILocationDetails {
+	address: string;
+	location: {
+		type: "Point";
+		coordinates: [number, number]; // [longitude, latitude]
+	};
+}
+
 // ==========================================
 // 2. INTERFACES
 // ==========================================
@@ -129,7 +137,7 @@ export interface IOrder {
 	status: OrderStatus;
 	totalAmount: number;
 	scheduledFor: Date;
-	deliveryAddress: string;
+	deliveryLocation: ILocationDetails;
 	items?: IOrderItem[];
 	inHomeDetails?: {
 		days: number;
