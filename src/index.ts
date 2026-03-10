@@ -130,7 +130,6 @@ export interface IInHomeService {
 	_id: Types.ObjectId;
 	providerId: Types.ObjectId;
 	title: string;
-	description: string;
 	pricePerDay: number;
 	images: string[];
 	isAvailable: boolean;
