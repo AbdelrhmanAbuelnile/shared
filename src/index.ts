@@ -138,6 +138,7 @@ export interface IOrder {
 	totalAmount: number;
 	scheduledFor: Date;
 	deliveryLocation: ILocationDetails;
+	deliveryNotes?: string;
 	items?: IOrderItem[];
 	inHomeDetails?: {
 		days: number;
