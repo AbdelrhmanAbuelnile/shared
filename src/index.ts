@@ -51,12 +51,21 @@ export enum MessageType {
 	VIDEO = "VIDEO",
 }
 
-export interface ILocationDetails {
-	address: string;
-	location: {
-		type: "Point";
-		coordinates: [number, number]; // [longitude, latitude]
-	};
+export enum VisitFrequency {
+	DAILY = "DAILY",
+	WEEKLY = "WEEKLY",
+	MONTHLY = "MONTHLY",
+}
+
+export enum InHomeBookingType {
+	STANDARD = "STANDARD",
+	RECURRING = "RECURRING",
+}
+
+export enum VisitStatus {
+	COMPLETED = "COMPLETED",
+	MISSED = "MISSED",
+	RESCHEDULED = "RESCHEDULED",
 }
 
 // ==========================================
@@ -125,6 +134,22 @@ export interface IInHomeService {
 	pricePerDay: number;
 	images: string[];
 	isAvailable: boolean;
+
+	// Tier 1: Standard Pricing
+	basePricePerDay: number;
+	volumeDiscount: {
+		minDays: number;
+		percentage: number; // e.g., 10 for 10%
+	};
+
+	// Tier 2: Recurring Packages
+	hasRecurringVisits: boolean;
+	visitPackages: {
+		frequency: VisitFrequency;
+		pricePerVisit: number;
+		description?: string;
+	}[];
+
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -137,13 +162,45 @@ export interface IOrder {
 	status: OrderStatus;
 	totalAmount: number;
 	scheduledFor: Date;
-	deliveryLocation: ILocationDetails;
-	deliveryNotes?: string;
-	items?: IOrderItem[];
-	inHomeDetails?: {
-		days: number;
-		pricePerDayAtBooking: number;
+
+	deliveryLocation: {
+		address: string;
+		location: {
+			type: "Point";
+			coordinates: [number, number]; // [longitude, latitude]
+		};
 	};
+	deliveryNotes?: string;
+
+	items?: IOrderItem[];
+
+	inHomeDetails?: {
+		bookingType: InHomeBookingType;
+		buyGroceries: boolean;
+
+		// Standard Booking Fields
+		days?: number;
+		pricePerDayAtBooking?: number;
+		discountAppliedPercentage?: number;
+
+		// Recurring Booking Fields
+		packageFrequency?: VisitFrequency;
+		pricePerVisitAtBooking?: number;
+		// totalVisitsPrepaid?: number;
+		visitsCompleted?: number;
+
+		// JIT PIN Verification
+		verificationPin?: string;
+		verificationPinExpiresAt?: Date;
+
+		// Security Handshake Logs
+		visitLogs?: {
+			loggedAt: Date;
+			status: VisitStatus;
+			notes?: string;
+		}[];
+	};
+
 	statusHistory: {
 		status: OrderStatus;
 		timestamp: Date;
@@ -156,6 +213,12 @@ export interface ICalendar {
 	_id: Types.ObjectId;
 	providerId: Types.ObjectId;
 	blackoutDates: Date[];
+
+	recurringBlackouts: {
+		dayOfWeek: number; // 0 = Sunday, 1 = Monday, 2 = Tuesday, etc.
+		orderId: string; // Ties the block to the specific contract
+	}[];
+
 	workingHours: object;
 	createdAt: Date;
 	updatedAt: Date;
