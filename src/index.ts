@@ -311,3 +311,24 @@ export interface ICuisine {
 	createdAt: Date;
 	updatedAt: Date;
 }
+
+export interface IFoodCategory {
+	_id: Types.ObjectId;
+	name: string;
+	nameEn: string;
+	imageUrl: string;
+	isActive: boolean;
+	createdBy?: Types.ObjectId;
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export interface IMenuCategory {
+	_id: Types.ObjectId;
+	providerId: Types.ObjectId;
+	name: string;
+	nameEn: string;
+	imageUrl: string;
+	createdAt: Date;
+	updatedAt: Date;
+}
