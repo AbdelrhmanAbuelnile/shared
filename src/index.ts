@@ -117,6 +117,8 @@ export interface IMenu {
 	images: string[];
 	isAvailable: boolean;
 	preparationTimeMinutes: number;
+	menuCategoryId: Types.ObjectId;
+	foodCategoryId: Types.ObjectId;
 	createdAt: Date;
 	updatedAt: Date;
 }
