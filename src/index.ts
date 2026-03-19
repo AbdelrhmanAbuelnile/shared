@@ -84,6 +84,7 @@ export interface IUser {
 	phoneNumber: string;
 	imageUrl?: string;
 	cuisines?: Types.ObjectId[];
+	foodCategories?: Types.ObjectId[];
 	bio?: string;
 	isDeleted: boolean;
 	isOnline: boolean;
