@@ -109,12 +109,20 @@ export interface IdentityVerification {
 	updatedAt: Date;
 }
 
+export interface IMenuOption {
+	_id?: Types.ObjectId | string;
+	name: string; // e.g., "Small", "Medium", "Large"
+	price: number; // The exact price for this size
+}
+
 export interface IMenu {
 	_id: Types.ObjectId;
 	providerId: Types.ObjectId;
 	name: string;
 	description: string;
 	price: number;
+	hasOptions?: boolean;
+	options?: IMenuOption[];
 	images: string[];
 	isAvailable: boolean;
 	preparationTimeMinutes: number;
@@ -128,6 +136,10 @@ export interface IOrderItem {
 	menuId: Types.ObjectId;
 	quantity: number;
 	priceAtTimeOfOrder: number;
+	selectedOption?: {
+		name: string;
+	};
+	notes?: string;
 }
 
 export interface IInHomeService {
