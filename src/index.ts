@@ -69,6 +69,14 @@ export enum VisitStatus {
 	RESCHEDULED = "RESCHEDULED",
 }
 
+export enum MenuUnitType {
+	PIECE = "PIECE",
+	PORTION = "PORTION", // Standard dish/plate
+	KILO = "KILO",
+	GRAM = "GRAM",
+	LITER = "LITER",
+}
+
 // ==========================================
 // 2. INTERFACES
 // ==========================================
@@ -336,6 +344,17 @@ export interface IFoodCategory {
 	createdBy?: Types.ObjectId;
 	createdAt: Date;
 	updatedAt: Date;
+}
+
+export interface IMasterDish {
+	name: string;
+	nameEn: string;
+	description: string;
+	descriptionEn: string;
+	cuisineId: Types.ObjectId;
+	foodCategoryId: Types.ObjectId;
+	imageUrl?: string;
+	isActive: boolean; // Admins can toggle this to hide seasonal dishes globally
 }
 
 export interface IMenuCategory {
