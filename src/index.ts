@@ -355,6 +355,9 @@ export interface IDish {
 	foodCategoryId: Types.ObjectId;
 	imageUrl?: string;
 	isActive: boolean; // Admins can toggle this to hide seasonal dishes globally
+	createdBy: Types.ObjectId;
+	createdAt: Date;
+	updatedAt: Date;
 }
 
 export interface IMenuCategory {
