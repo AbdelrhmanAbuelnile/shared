@@ -346,7 +346,7 @@ export interface IFoodCategory {
 	updatedAt: Date;
 }
 
-export interface IMasterDish {
+export interface IDish {
 	name: string;
 	nameEn: string;
 	description: string;
