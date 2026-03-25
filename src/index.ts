@@ -126,16 +126,18 @@ export interface IMenuOption {
 export interface IMenu {
 	_id: Types.ObjectId;
 	providerId: Types.ObjectId;
-	name: string;
+	cuisineId: Types.ObjectId;
+	dish: Types.ObjectId;
+	foodCategoryId: Types.ObjectId;
+	// name: string;
 	description: string;
 	price: number;
+	unitType: MenuUnitType;
 	hasOptions?: boolean;
 	options?: IMenuOption[];
 	images: string[];
 	isAvailable: boolean;
-	preparationTimeMinutes: number;
-	menuCategoryId: Types.ObjectId;
-	foodCategoryId: Types.ObjectId;
+	// menuCategoryId: Types.ObjectId;
 	createdAt: Date;
 	updatedAt: Date;
 }
