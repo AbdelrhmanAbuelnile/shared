@@ -94,6 +94,7 @@ export interface IUser {
 	cuisines?: Types.ObjectId[];
 	foodCategories?: Types.ObjectId[];
 	bio?: string;
+	zone?: IChefZone;
 	isDeleted: boolean;
 	isOnline: boolean;
 	lastSeenAt: Date;
@@ -368,6 +369,35 @@ export interface IMenuCategory {
 	name: string;
 	nameEn: string;
 	imageUrl: string;
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+// ==========================================
+// 3. ZONING & ADDRESSES
+// ==========================================
+
+export interface IGeoPoint {
+	type: "Point";
+	coordinates: [number, number]; // [longitude, latitude]
+}
+
+export interface IChefZone {
+	kitchenLocation: IGeoPoint;
+	maxRadiusKm: number;
+	includedGovernorates: string[]; // egydata govCode values e.g. "CAI", "GIZ"
+	excludedCities: number[]; // egydata city IDs
+}
+
+export interface IAddress {
+	_id: Types.ObjectId;
+	userId: Types.ObjectId;
+	label: string;
+	address: string;
+	location: IGeoPoint;
+	govCode: string; // egydata governorate code
+	cityId: number; // egydata city ID
+	isDefault: boolean;
 	createdAt: Date;
 	updatedAt: Date;
 }
