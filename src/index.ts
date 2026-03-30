@@ -385,8 +385,8 @@ export interface IGeoPoint {
 export interface IChefZone {
 	kitchenLocation: IGeoPoint;
 	maxRadiusKm: number;
-	includedGovernorates: string[]; // egydata govCode values e.g. "CAI", "GIZ"
-	excludedCities: number[]; // egydata city IDs
+	includedGovernorates: string[];
+	excludedCities: string[];
 }
 
 export interface IAddress {
@@ -395,8 +395,8 @@ export interface IAddress {
 	label: string;
 	address: string;
 	location: IGeoPoint;
-	govCode: string; // egydata governorate code
-	cityId: number; // egydata city ID
+	governorate: string;
+	city: string;
 	isDefault: boolean;
 	createdAt: Date;
 	updatedAt: Date;
